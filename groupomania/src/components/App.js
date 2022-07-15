@@ -1,11 +1,13 @@
 import "../App.css";
 import Logo from "./Logo";
+import Main from "../components/Main";
 
 function App() {
   return (
-    <div>
+    <header>
       <Logo />
-    </div>
+      <Main />
+    </header>
   );
 }
 
