@@ -7,13 +7,11 @@ const path = require("path");
 
 // Déclaration des routes----------------
 
-// Imporation de la route sauces
-const postRoutes = require("./routes/post");
 // Importation de la route user
 const userRoutes = require("./routes/user");
 //-----------------------------------
 
-// Connection a mongoose
+// Connection a mongooses
 mongoose
   .connect(
     "mongodb+srv://CErnst:OpenClassRoomP6@cluster0.rs4frvy.mongodb.net/?retryWrites=true&w=majority",
@@ -43,7 +41,6 @@ app.use((req, res, next) => {
 });
 
 // Utilisation des 2 routes dédiées pour sauces et auth
-app.use("/api/post", postRoutes);
 app.use("/api/auth", userRoutes);
 
 // Gestion de la ressource image de façon statique
