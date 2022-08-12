@@ -9,6 +9,7 @@ const path = require("path");
 
 // Importation de la route user
 const userRoutes = require("./routes/user");
+const postRoutes = require("./routes/post");
 //-----------------------------------
 
 // Connection a mongooses
@@ -40,8 +41,9 @@ app.use((req, res, next) => {
   next();
 });
 
-// Utilisation des 2 routes dédiées pour sauces et auth
+// Utilisation des 2 routes dédiées pour post et auth
 app.use("/api/auth", userRoutes);
+app.use("/api/post", postRoutes);
 
 // Gestion de la ressource image de façon statique
 // Midleware qui permet de charger les fichiers qui sont dans le repertoire images
