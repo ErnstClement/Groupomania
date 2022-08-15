@@ -3,12 +3,12 @@ const mongoose = require("mongoose");
 
 // Création du schéma pour chaque nouveau utilisateur
 const postSchema = mongoose.Schema({
-  email: {
+  text: {
     type: String,
-    require: [true, "Veuillez entrer une adresse email"],
-    unique: true,
   },
-  password: { type: String, require: true },
+  imageUrl: { type: String },
+  likes: 0,
+  usersLiked: [],
 });
 
 // On exporte le schema

@@ -5,20 +5,9 @@ var fs = require("fs");
 
 //----création d'un nouveau post-----------------
 exports.createPost = (req, res, next) => {
-  //On récupère les données envoyé par le frontend
-  const PostItem = JSON.parse(req.body.post);
-  // On supprime l'Id envoyé par le frontend, une nouvelle Id sera crée dans la base de donnée MongoDB à la création
-  delete PostItem._id;
-  // Création du modele du nouveau post
+  // Création du modele du nouveau post*/
   const post = new Post({
-    ...PostItem,
-    imageUrl: `${req.protocol}://${req.get("host")}/images/${
-      req.file.filename
-    }`,
-    likes: 0,
-    dislikes: 0,
-    usersLiked: [],
-    usersDisliked: [],
+    text: req.body.text,
   });
   post
     .save() // Sauvegarde dans la BDD (Base De Donnée)
@@ -64,7 +53,7 @@ exports.getOnePost = (req, res, next) => {
     );
 };
 
-//---Suppression d'une sauce----------------
+//---Suppression d'un post----------------
 exports.deletePost = (req, res, next) => {
   // Avant de suppr l'objet, on va le chercher pour obtenir l'url de l'image et supprimer le fichier image de la base
   Post.findOne({
@@ -72,7 +61,7 @@ exports.deletePost = (req, res, next) => {
   })
     .then((post) => {
       // Pour extraire ce fichier, on récupère l'url de la sauce, et on le split autour de la chaine de caractères, donc le nom du fichier
-      const filename = sauce.imageUrl.split("/images/")[1];
+      const filename = post.imageUrl.split("/images/")[1];
       // Avec ce nom de fichier, on appelle unlink pour suppr le fichier
       fs.unlink(`images/${filename}`, () => {
         // On supprime le document correspondant de la base de données
@@ -101,7 +90,7 @@ exports.deletePost = (req, res, next) => {
 };
 //-------------------------------
 
-//---Modifications des sauces--------
+//---Modifications des posts--------
 
 exports.modifyPost = (req, res, next) => {
   let postObject = {};
