@@ -55,10 +55,27 @@ exports.getOnePost = (req, res, next) => {
 
 //---Suppression d'un post----------------
 exports.deletePost = (req, res, next) => {
+  Post.deleteOne({
+    _id: req.params.id,
+  })
+    .then(() =>
+      res.status(200).json({
+        message: "Post supprimée !",
+      })
+    )
+    .catch((error) =>
+      res.status(400).json({
+        error,
+      })
+    );
+};
+
+/*
   // Avant de suppr l'objet, on va le chercher pour obtenir l'url de l'image et supprimer le fichier image de la base
   Post.findOne({
     _id: req.params.id,
   })
+
     .then((post) => {
       // Pour extraire ce fichier, on récupère l'url de la sauce, et on le split autour de la chaine de caractères, donc le nom du fichier
       const filename = post.imageUrl.split("/images/")[1];
@@ -86,8 +103,8 @@ exports.deletePost = (req, res, next) => {
           error,
         }),
       console.log(res)
-    );
-};
+    );*/
+
 //-------------------------------
 
 //---Modifications des posts--------
