@@ -8,6 +8,11 @@ exports.createPost = (req, res, next) => {
   // Création du modele du nouveau post*/
   const post = new Post({
     text: req.body.text,
+    /* imageUrl: `${req.protocol}://${req.get("host")}/images/${
+      req.file.filename
+    }`,*/
+    likes: 0,
+    usersLiked: [],
   });
   post
     .save() // Sauvegarde dans la BDD (Base De Donnée)
