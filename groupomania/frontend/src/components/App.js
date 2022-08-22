@@ -1,9 +1,15 @@
 import "../styles/App.css";
+import "../styles/Auth.css";
 import Loading from "./Loading";
-import auth from "./Auth";
+import Auth from "./Auth";
 
 function App() {
-  return <Loading />;
+  return (
+    <div>
+      <Loading />
+      <Auth />
+    </div>
+  );
 }
 
 export default App;
