@@ -1,0 +1,26 @@
+.Loading{
+    display: flex;
+}
+
+@keyframes loading {
+   0%{
+    transform: translateY(350px);
+    opacity: 0;
+   }
+   100%{
+    transform: translateY(0px);
+    opacity: 1;
+   }
+}
+
+.g-logo{
+    
+margin: auto;
+margin-top: -350px;
+animation-name: loading;
+animation-duration: 2000ms;
+animation-delay: 000ms;
+animation-timing-function: ease-in-out;
+animation-iteration-count: 1;
+}
+

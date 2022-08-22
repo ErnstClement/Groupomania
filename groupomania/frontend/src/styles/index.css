@@ -8,6 +8,11 @@ body {
   background-color: #4E5166;
 }
 
+Titre {
+  text-align: center;
+}
+
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

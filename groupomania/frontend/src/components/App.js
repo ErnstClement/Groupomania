@@ -1,14 +1,9 @@
-import "../App.css";
-import Logo from "./Logo";
-import Main from "../components/Main";
+import "../styles/App.css";
+import Loading from "./Loading";
+import auth from "./Auth";
 
 function App() {
-  return (
-    <header>
-      <Logo />
-      <Main />
-    </header>
-  );
+  return <Loading />;
 }
 
 export default App;

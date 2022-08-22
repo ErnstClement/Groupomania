@@ -6,11 +6,11 @@ const authentification = require("../middleware/authentification");
 const postCtrl = require("../controllers/post");
 
 //Routes permettant la gestion des posts
-router.post("/", postCtrl.createPost);
+router.post("/", multer, postCtrl.createPost);
 router.get("/", postCtrl.getAllPost);
 router.get("/:id", postCtrl.getOnePost);
 router.delete("/:id", postCtrl.deletePost);
-router.put("/:id", postCtrl.modifyPost);
+router.put("/:id", multer, postCtrl.modifyPost);
 router.post("/:id/like", postCtrl.like);
 
 module.exports = router;

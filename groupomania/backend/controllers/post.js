@@ -5,12 +5,13 @@ var fs = require("fs");
 
 //----création d'un nouveau post-----------------
 exports.createPost = (req, res, next) => {
+  console.log("req.file", req.file);
   // Création du modele du nouveau post*/
   const post = new Post({
     text: req.body.text,
-    /* imageUrl: `${req.protocol}://${req.get("host")}/images/${
+    imageUrl: `${req.protocol}://${req.get("host")}/images/${
       req.file.filename
-    }`,*/
+    }`,
     likes: 0,
     usersLiked: [],
   });
@@ -59,23 +60,8 @@ exports.getOnePost = (req, res, next) => {
 };
 
 //---Suppression d'un post----------------
-exports.deletePost = (req, res, next) => {
-  Post.deleteOne({
-    _id: req.params.id,
-  })
-    .then(() =>
-      res.status(200).json({
-        message: "Post supprimée !",
-      })
-    )
-    .catch((error) =>
-      res.status(400).json({
-        error,
-      })
-    );
-};
 
-/*
+(exports.deletePost = (req, res, next) => {
   // Avant de suppr l'objet, on va le chercher pour obtenir l'url de l'image et supprimer le fichier image de la base
   Post.findOne({
     _id: req.params.id,
@@ -108,59 +94,59 @@ exports.deletePost = (req, res, next) => {
           error,
         }),
       console.log(res)
-    );*/
-
-//-------------------------------
-
-//---Modifications des posts--------
-
-exports.modifyPost = (req, res, next) => {
-  let postObject = {};
-  req.file
-    ? // utilisation de l'opérateur conditionel pour ne pas utiliser les if/else
-      // Si la modification contient une nouvelle image
-      (Post.findOne({
-        _id: req.params.id, // on récupere la sauce grace à son identifiant
-      }).then((post) => {
-        // On supprime l'ancienne image du serveur
-        const filename = sauce.imageUrl.split("/images/")[1];
-        fs.unlinkSync(`images/${filename}`); // on supprime l'ancienne image de la base de données grace au module Files system
-      }),
-      (postObject = {
-        // On modifie les données et on ajoute la nouvelle image
-        ...JSON.parse(req.body.post),
-        imageUrl: `${req.protocol}://${req.get("host")}/images/${
-          req.file.filename
-        }`,
-      }))
-    : // Opérateur ternaire équivalent à if() {} else {} => condition ? Instruction si vrai : Instruction si faux
-      // Si la modification ne contient pas de nouvelle image
-      (postObject = {
-        ...req.body,
-      });
-  Post.updateOne(
-    // On applique les paramètre de sauceObject
-    {
-      _id: req.params.id, //récupération de l'id de la sauce
-    },
-    {
-      ...postObject,
-      _id: req.params.id,
-    }
-  )
-    // si tout se passe comme prévu, on renvoi un code 200 avec un message de validation
-    .then(() =>
-      res.status(200).json({
-        message: "Post modifiée !",
-      })
-    )
-    // sinon renvoi d'un message d'erreur avec une erreur 400
-    .catch((error) =>
-      res.status(400).json({
-        error,
-      })
     );
-};
+}),
+  //-------------------------------
+
+  //---Modifications des posts--------
+
+  (exports.modifyPost = (req, res, next) => {
+    let postObject = {};
+    req.file
+      ? // utilisation de l'opérateur conditionel pour ne pas utiliser les if/else
+        // Si la modification contient une nouvelle image
+        (Post.findOne({
+          _id: req.params.id, // on récupere la sauce grace à son identifiant
+        }).then((post) => {
+          // On supprime l'ancienne image du serveur
+          const filename = post.imageUrl.split("/images/")[1];
+          fs.unlinkSync(`images/${filename}`); // on supprime l'ancienne image de la base de données grace au module Files system
+        }),
+        (postObject = {
+          // On modifie les données et on ajoute la nouvelle image
+          text: req.body.text,
+          imageUrl: `${req.protocol}://${req.get("host")}/images/${
+            req.file.filename
+          }`,
+        }))
+      : // Opérateur ternaire équivalent à if() {} else {} => condition ? Instruction si vrai : Instruction si faux
+        // Si la modification ne contient pas de nouvelle image
+        (postObject = {
+          ...req.body,
+        });
+    Post.updateOne(
+      // On applique les paramètre de sauceObject
+      {
+        _id: req.params.id, //récupération de l'id de la sauce
+      },
+      {
+        ...postObject,
+        _id: req.params.id,
+      }
+    )
+      // si tout se passe comme prévu, on renvoi un code 200 avec un message de validation
+      .then(() =>
+        res.status(200).json({
+          message: "Post modifiée !",
+        })
+      )
+      // sinon renvoi d'un message d'erreur avec une erreur 400
+      .catch((error) =>
+        res.status(400).json({
+          error,
+        })
+      );
+  });
 //------------------------------
 
 //---Ajout des likes-----
@@ -171,13 +157,13 @@ exports.like = (req, res, next) => {
   // On prend le userID
   let userId = req.body.userId;
   // On prend l'id de la sauce
-  let sauceId = req.params.id;
+  let postId = req.params.id;
 
   if (like === 1) {
     // Si il s'agit d'un like
-    Sauce.updateOne(
+    Post.updateOne(
       {
-        _id: sauceId,
+        _id: postId,
       },
       {
         // On push l'utilisateur et on incrémente le compteur de 1
@@ -203,23 +189,23 @@ exports.like = (req, res, next) => {
       );
   }
   if (like === -1) {
-    Sauce.updateOne(
+    Post.updateOne(
       // S'il s'agit d'un dislike
       {
-        _id: sauceId,
+        _id: postId,
       },
       {
         $push: {
           usersDisliked: userId,
         },
         $inc: {
-          dislikes: +1,
+          likes: -1,
         }, // On incrémente de 1
       }
     )
       .then(() => {
         res.status(200).json({
-          message: "Dislike ajouté !",
+          message: "like retiré !",
         });
       })
       .catch((error) =>
@@ -230,15 +216,15 @@ exports.like = (req, res, next) => {
   }
   if (like === 0) {
     // Si il s'agit d'annuler un like ou un dislike
-    Sauce.findOne({
-      _id: sauceId,
+    Post.findOne({
+      _id: postId,
     })
-      .then((sauce) => {
-        if (sauce.usersLiked.includes(userId)) {
+      .then((post) => {
+        if (post.usersLiked.includes(userId)) {
           // Si il s'agit d'annuler un like
-          Sauce.updateOne(
+          Post.updateOne(
             {
-              _id: sauceId,
+              _id: postId,
             },
             {
               $pull: {
@@ -260,11 +246,11 @@ exports.like = (req, res, next) => {
               })
             );
         }
-        if (sauce.usersDisliked.includes(userId)) {
+        if (post.usersDisliked.includes(userId)) {
           // Si il s'agit d'annuler un dislike
-          Sauce.updateOne(
+          Post.updateOne(
             {
-              _id: sauceId,
+              _id: postId,
             },
             {
               $pull: {
