@@ -4,11 +4,11 @@
 
 @keyframes loading {
    0%{
-    transform: translateY(350px);
+    transform: translateY(350px); 
     opacity: 0;
    }
    100%{
-    transform: translateY(0px);
+    transform: translateY(0px); 
     opacity: 1;
    }
 }
@@ -22,5 +22,6 @@ animation-duration: 2000ms;
 animation-delay: 000ms;
 animation-timing-function: ease-in-out;
 animation-iteration-count: 1;
+animation-fill-mode: forwards;
 }
 

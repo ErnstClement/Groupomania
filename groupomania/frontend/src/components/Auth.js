@@ -6,7 +6,7 @@ function Auth() {
       </div>
 
       <div className="signup">
-        <button className="btn-signup">Signup</button>
+        <button className="btn-signup">Inscription</button>
       </div>
     </div>
   );

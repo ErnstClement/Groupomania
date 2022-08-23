@@ -1,0 +1,35 @@
+@keyframes auth {
+    0%{
+
+     opacity: 0;
+    }
+    100%{
+  
+     opacity: 1;
+    }
+ }
+
+.main-auth{
+    opacity: 0;
+    display: flex;    
+    margin: auto;
+    margin-top: -250px;
+    width: 25%;
+    justify-content: space-evenly;
+    animation-name: auth;
+    animation-duration: 2000ms;
+    animation-delay: 2000ms;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    
+}
+.btn-login{
+    height: 30px;
+    width: 110px;
+}
+.btn-signup{
+    height: 30px;
+    width: 110px;
+
+}
