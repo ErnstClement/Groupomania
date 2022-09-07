@@ -13,9 +13,9 @@
     opacity: 0;
     display: flex;    
     margin: auto;
-    margin-top: -250px;
+    margin-top: 10px;
     width: 25%;
-    justify-content: space-evenly;
+    justify-content: center;
     animation-name: auth;
     animation-duration: 2000ms;
     animation-delay: 2000ms;

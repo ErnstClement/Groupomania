@@ -14,12 +14,12 @@
 }
 
 .g-logo{
-    
+    opacity: 0;
 margin: auto;
 margin-top: -350px;
 animation-name: loading;
 animation-duration: 2000ms;
-animation-delay: 000ms;
+animation-delay: 1000ms;
 animation-timing-function: ease-in-out;
 animation-iteration-count: 1;
 animation-fill-mode: forwards;
