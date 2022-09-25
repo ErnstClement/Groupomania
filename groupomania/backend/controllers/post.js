@@ -1,4 +1,4 @@
-const Post = require("../models/post");
+const Post = require("../models/Post");
 
 // Récupération du module file-system pour faciliter les modifications sur nos sauces
 var fs = require("fs");
@@ -9,9 +9,9 @@ exports.createPost = (req, res, next) => {
   // Création du modele du nouveau post*/
   const post = new Post({
     text: req.body.text,
-    imageUrl: `${req.protocol}://${req.get("host")}/images/${
+    /*imageUrl: `${req.protocol}://${req.get("host")}/images/${
       req.file.filename
-    }`,
+    }`,*/
     likes: 0,
     usersLiked: [],
   });

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Button, Checkbox, Form } from "semantic-ui-react";
 import axios from "axios";
+import "../styles/Form.css";
+
 const baseUrl = "http://localhost:3000/api/auth/signup";
 
 function Signup() {
@@ -40,12 +42,13 @@ function Signup() {
         <Form.Field>
           <label>Mot de passe :</label>
           <input
+            type="password"
             placeholder="Entrez votre mot de passe"
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Field>
         <Button onClick={postData} type="submit">
-          Submit
+          Valider
         </Button>
       </Form>
     </div>

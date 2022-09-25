@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Button, Checkbox, Form } from "semantic-ui-react";
 import axios from "axios";
-
+import "../styles/Form.css";
+import { useNavigate } from "react-router-dom";
 const baseUrl = "http://localhost:3000/api/auth/login";
 
 function Login() {
+  let navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -19,6 +21,7 @@ function Login() {
       })
       .then((response) => {
         console.log(response);
+        navigate("/home");
       })
       .catch(({ response }) => {
         console.log(response.data);
@@ -29,7 +32,7 @@ function Login() {
 
   return (
     <div className="login-container">
-      <h1>Bienvenue sur la page d'inscription !</h1>;
+      <h1>Bienvenue sur la page de connexion !</h1>;
       <Form className="create-form">
         <Form.Field>
           <label>Email :</label>
@@ -41,12 +44,13 @@ function Login() {
         <Form.Field>
           <label>password :</label>
           <input
+            type="password"
             placeholder="Entrez votre mot de passe"
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Field>
         <Button onClick={postData} type="submit">
-          Submit
+          Valider
         </Button>
       </Form>
     </div>

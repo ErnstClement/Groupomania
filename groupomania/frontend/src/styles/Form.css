@@ -1,35 +1,35 @@
-@keyframes auth {
-    0%{
+h1{
+    text-align: center;
+}
+.create-form{
+    display: flex;
+    flex-direction: column;
+}
+.field{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 100%;
 
-     opacity: 0;
-    }
-    100%{
-  
-     opacity: 1;
-    }
- }
-
-.form-data{
-    margin-top: -250px;
-    opacity: 0;  
-    animation-name: auth;
-    animation-duration: 2000ms;
-    animation-delay: 2000ms;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-    
+}
+input{
+    margin: auto;
+    width: 20%;
 }
 
-.mail{
-    width: 25%;
-    margin: auto;
- 
-    }
-label{
-    display: grid;
+::placeholder{
+    text-align: center;
 }
-.password{
+
+button{
     margin: auto;
-    width: 25%;
+    margin-top: 15px;
+    width: 10%;
+}
+a{
+    margin: auto;
+}
+.createPost{
+    width: 100%;
 }

@@ -1,0 +1,46 @@
+@keyframes navbar {
+    0%{
+     opacity: 0;
+    }
+    100%{
+     opacity: 1;
+ 
+    }
+ }
+ 
+
+
+
+
+.main-navigator{
+    display: flex;
+    opacity: 0;
+    animation-name: navbar;
+    animation-duration: 2000ms;
+    animation-delay: 2000ms;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    
+
+}
+
+nav{
+    width: 50%;
+    display: flex;
+    margin: auto;
+}
+ul{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+li{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
