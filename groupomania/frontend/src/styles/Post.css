@@ -1,0 +1,12 @@
+.post-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.post-block{
+    width: 80%;
+    border: solid 1px black;
+    margin: auto;
+    margin-top: 35px;
+    
+}

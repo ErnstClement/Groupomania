@@ -33,3 +33,11 @@ a{
 .createPost{
     width: 100%;
 }
+
+.navbar{
+    display: none ;
+}
+
+.main-navigator{
+    display: flex;
+}

@@ -15,6 +15,7 @@ const storage = multer.diskStorage({
     callback(null, "images");
   },
   filename: (req, file, callback) => {
+    console.log("req.filename-----", file.originalname);
     // Suppression des espaces dans le nom du fichier
     const name = file.originalname.split(" ").join("_");
     const extension = MYME_TYPES[file.mimetype];

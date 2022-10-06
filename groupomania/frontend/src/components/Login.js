@@ -12,16 +12,18 @@ function Login() {
 
   const postData = () => {
     console.log(postData);
-    console.log("email: " + email);
-    console.log("password: " + password);
+
     axios
       .post(baseUrl, {
         email: email,
         password: password,
       })
       .then((response) => {
-        console.log(response);
+        var data = response.data;
+        var token = data.token;
+        console.log("token", token);
         navigate("/home");
+        localStorage.setItem("token", JSON.stringify(token));
       })
       .catch(({ response }) => {
         console.log(response.data);

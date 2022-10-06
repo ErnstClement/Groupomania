@@ -25,10 +25,13 @@
 
 }
 
-nav{
+.navbar{
     width: 50%;
     display: flex;
-    margin: auto;
+    margin: auto;    
+}
+button{
+    width: 115px !important;
 }
 ul{
     width: 100%;
