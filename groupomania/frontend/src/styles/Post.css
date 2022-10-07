@@ -4,9 +4,36 @@
 }
 
 .post-block{
+    background-color: white;
     width: 80%;
-    border: solid 1px black;
+    border: solid 4px black;
+    border-radius: 10px;
     margin: auto;
     margin-top: 35px;
+    margin-bottom: 35px;
     
+}
+
+.post-content{
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+h4{
+    padding-left: 10px;
+}
+.post-user{
+    padding-left: 10px;
+    border-bottom: solid 1px black;
+}
+
+.post-text{
+    padding-left: 10px;
+}
+
+.post-img, img{
+    width: 50%;
+    display: flex;
+    margin: auto;
+    overflow: hidden;
 }

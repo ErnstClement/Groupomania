@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Checkbox, Form } from "semantic-ui-react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Delete from "../components/Delete";
 import Post from "./Post";
 import axios from "axios";
 import "../styles/Form.css";
@@ -39,11 +40,24 @@ function Home() {
         </Link>
       </div>
       <div className="post-container">
-        {posts.map((post, i) => (
+        {posts.reverse().map((post, i) => (
           <div key={i} className="post-block">
-            <p>UserId : {post._id}</p>
-            <p>{post.text}</p>
-            <img src={post.imageUrl}></img>
+            <div className="post-user">
+              <p id="id">{post._id}</p>
+              <div className="post-button">
+                <Button type="submit">Edit</Button>
+                <Button onClick={() => Delete(post._id)}>Suppression</Button>
+              </div>
+            </div>
+            <div className="post-content">
+              <h4>Message :</h4>
+              <div className="post-text">
+                <p>{post.text}</p>
+              </div>
+              <div className="post-img">
+                <img src={post.imageUrl}></img>
+              </div>
+            </div>
           </div>
         ))}
       </div>
