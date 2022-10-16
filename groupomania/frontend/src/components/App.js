@@ -14,6 +14,8 @@ function App() {
     <BrowserRouter>
       <div className="main">
         <Loading />
+        <h1>Bienvenue sur le service de messagerie de Groupomania</h1>
+
         <div className="navbar">
           <Link to="/login">
             <Button className="btnLogin" type="submit">

@@ -20,10 +20,14 @@ function Login() {
       })
       .then((response) => {
         var data = response.data;
+        console.log(data);
+        var id = response.data.userId;
+        console.log("id: " + id);
         var token = data.token;
         console.log("token", token);
         navigate("/home");
         localStorage.setItem("token", JSON.stringify(token));
+        localStorage.setItem("id", JSON.stringify(id));
       })
       .catch(({ response }) => {
         console.log(response.data);
@@ -34,7 +38,6 @@ function Login() {
 
   return (
     <div className="login-container">
-      <h1>Bienvenue sur la page de connexion !</h1>;
       <Form className="create-form">
         <Form.Field>
           <label>Email :</label>

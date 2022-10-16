@@ -14,6 +14,12 @@
     
 }
 
+.post-button{
+    display: flex;
+    margin-bottom: 10px;
+width: 25%;
+}
+
 .post-content{
     width: 100%;
     margin-bottom: 15px;

@@ -9,12 +9,15 @@ function Post() {
   let navigate = useNavigate();
   const [text, setText] = useState("null");
   const [image, setImage] = useState("");
+  const id = localStorage.getItem("id");
+
   const imageInputChangeHandler = (event) => {
     setImage(event.target.files[0]);
   };
 
   const sendPost = () => {
     const token = localStorage.getItem("token");
+
     const headers = {
       Authorization: `Bearer ${token}`,
     };
@@ -22,15 +25,13 @@ function Post() {
     let formData = new FormData();
     formData.append("text", text);
     formData.append("image", image);
+    formData.append("postedBy", id);
+    console.log(formData);
 
-    console.log(sendPost);
-    console.log("text: " + text);
-    console.log("image: " + image);
-    console.log("tokenSend", headers);
     axios
       .post(baseUrl, formData, { headers: headers })
       .then((response) => {
-        alert("Post envoyé.");
+        alert("Message créé avec succès !.");
         console.log(response);
         navigate("/home");
       })
@@ -60,6 +61,7 @@ function Post() {
             placeholder="ajouter une image"
             onChange={imageInputChangeHandler}
           />
+          <img src={image}></img>
         </Form.Field>
         <Button onClick={sendPost} type="submit">
           Valider

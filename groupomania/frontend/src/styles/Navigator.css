@@ -1,37 +1,12 @@
-@keyframes navbar {
-    0%{
-     opacity: 0;
-    }
-    100%{
-     opacity: 1;
  
-    }
- }
- 
-
-
-
-
-.main-navigator{
-    display: flex;
-    opacity: 0;
-    animation-name: navbar;
-    animation-duration: 2000ms;
-    animation-delay: 2000ms;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-    
-
-}
-
 .navbar{
     width: 50%;
     display: flex;
-    margin: auto;    
+    margin: auto;  
+    margin-top: -220px;  
 }
 button{
-    width: 115px !important;
+    width: 200px !important;
 }
 ul{
     width: 100%;

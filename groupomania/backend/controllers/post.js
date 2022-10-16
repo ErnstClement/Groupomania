@@ -5,13 +5,16 @@ var fs = require("fs");
 
 //----création d'un nouveau post-----------------
 exports.createPost = (req, res, next) => {
-  console.log("req.file", req.file);
+  let imgUrl = "";
+  if (req.file && req.file.filename) {
+    imgUrl = `${req.protocol}://${req.get("host")}/images/${req.file.filename}`;
+  }
+  console.log(req);
   // Création du modele du nouveau post*/
   const post = new Post({
     text: req.body.text,
-    imageUrl: `${req.protocol}://${req.get("host")}/images/${
-      req.file.filename
-    }`,
+    imageUrl: imgUrl,
+    postedBy: req.body.postedBy,
     likes: 0,
     usersLiked: [],
   });

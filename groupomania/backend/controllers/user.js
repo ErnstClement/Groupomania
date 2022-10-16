@@ -46,6 +46,7 @@ exports.login = (req, res, next) => {
           res.status(200).json({
             //Renvoi de la réponse back vers le frond
             userId: user._id,
+        
             token: jwt.sign(
               //On passe le token original dans jwt pour l'encodé
               {

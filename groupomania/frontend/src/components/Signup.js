@@ -30,7 +30,6 @@ function Signup() {
 
   return (
     <div className="signup-container">
-      <h1>Bienvenue sur la page d'inscription !</h1>;
       <Form className="create-form">
         <Form.Field>
           <label>Email :</label>
