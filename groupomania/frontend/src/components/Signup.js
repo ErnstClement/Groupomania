@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Button, Checkbox, Form } from "semantic-ui-react";
 import axios from "axios";
 import "../styles/Form.css";
+import Loading from "./Loading";
+import { useNavigate, Link } from "react-router-dom";
 
 const baseUrl = "http://localhost:3000/api/auth/signup";
 
@@ -30,6 +32,20 @@ function Signup() {
 
   return (
     <div className="signup-container">
+      <div className="login-container">
+        <div className="main">
+          <Loading />
+          <h1>Bienvenue sur le service de messagerie de Groupomania</h1>
+
+          <div className="navbar">
+            <Link to="/login">
+              <Button className="btnLogin" type="submit">
+                Se connecter
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
       <Form className="create-form">
         <Form.Field>
           <label>Email :</label>

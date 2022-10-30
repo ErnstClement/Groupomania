@@ -2,32 +2,36 @@ import React, { useState } from "react";
 import { Button, Checkbox, Form } from "semantic-ui-react";
 import axios from "axios";
 import "../styles/Form.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 const baseUrl = "http://localhost:3000/api/post/";
 
 function Post() {
+  const userId = localStorage.getItem("id");
+  const { id } = useParams();
+  const token = localStorage.getItem("token");
+  console.log(token);
+
+  axios.get(baseUrl + "/" + id).then((response) => {
+    var data = response.data;
+    console.log(data);
+  });
+
   let navigate = useNavigate();
   const [text, setText] = useState("");
   const [image, setImage] = useState("");
-  const id = localStorage.getItem("id");
-
-  console.log(text, "text");
 
   const imageInputChangeHandler = (event) => {
     setImage(event.target.files[0]);
   };
-  console.log(image, "image");
 
   const back = () => {
     navigate("/home");
-  }
+  };
 
   const sendPost = () => {
     if (text === "") {
       alert("Impossible d'envoyer un message vide !");
     } else {
-      const token = localStorage.getItem("token");
-
       const headers = {
         Authorization: `Bearer ${token}`,
       };
@@ -35,11 +39,10 @@ function Post() {
       let formData = new FormData();
       formData.append("text", text);
       formData.append("image", image);
-      formData.append("postedBy", id);
-      console.log(formData);
+      formData.append("postedBy", userId);
 
       axios
-        .post(baseUrl, formData, { headers: headers })
+        .put(baseUrl + "/" + id, formData, { headers: headers })
         .then((response) => {
           alert("Message créé avec succès !");
           console.log(response);
@@ -59,10 +62,7 @@ function Post() {
       <Form className="create-form">
         <Form.Field>
           <label>Veuillez entrer votre message :</label>
-          <input
-            placeholder="Entrez votre message"
-            onChange={(e) => setText(e.target.value)}
-          />
+          <input placeholder="ici" onChange={(e) => setText(e.target.value)} />
         </Form.Field>
         <Form.Field>
           <label>image :</label>

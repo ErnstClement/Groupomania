@@ -16,11 +16,10 @@ h1{
 input{
     margin: auto;
     width: 20%;
+    
 }
 
-::placeholder{
-    text-align: center;
-}
+
 
 button{
     margin: auto;

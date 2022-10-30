@@ -5,11 +5,11 @@ var fs = require("fs");
 
 //----création d'un nouveau post-----------------
 exports.createPost = (req, res, next) => {
-  let imgUrl = "";
-  if (req.file && req.file.filename) {
+  let imgUrl = ""; // création constante vide pour récupération de l'image
+  // --- upload de l'image vers le dossier "images"
+  if (req.file && req.file.filename) { 
     imgUrl = `${req.protocol}://${req.get("host")}/images/${req.file.filename}`;
   }
-  console.log(req);
   // Création du modele du nouveau post*/
   const post = new Post({
     text: req.body.text,
@@ -81,7 +81,7 @@ exports.getOnePost = (req, res, next) => {
         })
           .then(() =>
             res.status(200).json({
-              message: "Post supprimée !",
+              message: "Message supprimée !",
             })
           )
           .catch((error) =>

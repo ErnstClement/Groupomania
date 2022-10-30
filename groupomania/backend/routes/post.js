@@ -8,7 +8,7 @@ const postCtrl = require("../controllers/post");
 //Routes permettant la gestion des posts
 router.post("/", multer, postCtrl.createPost);
 router.get("/", postCtrl.getAllPost);
-router.get("/:id", authentification, postCtrl.getOnePost);
+router.get("/:id", postCtrl.getOnePost);
 router.delete("/:id", postCtrl.deletePost);
 router.put("/:id", authentification, multer, postCtrl.modifyPost);
 router.post("/:id/like", authentification, postCtrl.like);

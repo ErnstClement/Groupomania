@@ -14,12 +14,20 @@ function Home() {
   let navigate = useNavigate();
   const [posts, setPosts] = useState([]);
   const deleteOnePost = (id) => {
-    console.log("deleteposte", id);
     axios.delete(baseUrl + "/" + id).then((response) => {
-      console.log(response);
       alert("Message supprimé.");
       navigate(0);
     });
+  };
+
+  const modifyOne = (id) => {
+    axios.get(baseUrl + "/" + id).then((response) => {
+      var data = response.data;
+
+      navigate("/postModify/" + id);
+    });
+
+    /*alert("Message modifié !")*/
   };
   useEffect(() => {
     axios
@@ -53,8 +61,10 @@ function Home() {
             <div className="post-user">
               <p id="id">Message envoyé par : {post.postedBy}</p>
               <div className="post-button">
-                <Button onClick={() => deleteOnePost(post._id)}>Modifier</Button>
-                <Button onClick={() => deleteOnePost(post._id)}>supprimer</Button>
+                <Button onClick={() => modifyOne(post._id)}>Modifier</Button>
+                <Button onClick={() => deleteOnePost(post._id)}>
+                  supprimer
+                </Button>
               </div>
             </div>
             <div className="post-content">
