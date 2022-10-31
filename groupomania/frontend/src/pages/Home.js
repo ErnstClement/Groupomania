@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Button, Checkbox, Form } from "semantic-ui-react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import Delete from "../components/Delete";
-import Post from "./Post";
+import { Button } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "../styles/Form.css";
 import "../styles/Post.css";
@@ -22,8 +20,6 @@ function Home() {
 
   const modifyOne = (id) => {
     axios.get(baseUrl + "/" + id).then((response) => {
-      var data = response.data;
-
       navigate("/postModify/" + id);
     });
 
@@ -63,7 +59,7 @@ function Home() {
               <div className="post-button">
                 <Button onClick={() => modifyOne(post._id)}>Modifier</Button>
                 <Button onClick={() => deleteOnePost(post._id)}>
-                  supprimer
+                  Supprimer
                 </Button>
               </div>
             </div>
@@ -73,7 +69,7 @@ function Home() {
                 <p>{post.text}</p>
               </div>
               <div className="post-img">
-                <img src={post.imageUrl}></img>
+                <img src={post.imageUrl} alt={post.imageUrl}></img>
               </div>
             </div>
           </div>

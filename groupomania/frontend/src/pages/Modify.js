@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Checkbox, Form } from "semantic-ui-react";
+import { Button, Form } from "semantic-ui-react";
 import axios from "axios";
 import "../styles/Form.css";
 import { useNavigate, useParams } from "react-router-dom";
@@ -44,7 +44,7 @@ function Post() {
       axios
         .put(baseUrl + "/" + id, formData, { headers: headers })
         .then((response) => {
-          alert("Message créé avec succès !");
+          alert("Message modifié avec succès !");
           console.log(response);
           navigate("/home");
         })
@@ -72,7 +72,7 @@ function Post() {
             placeholder="ajouter une image"
             onChange={imageInputChangeHandler}
           />
-          <img src={image}></img>
+          <img src={image} alt={image}></img>
         </Form.Field>
         <Button onClick={sendPost} type="submit">
           Valider
