@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Checkbox, Form } from "semantic-ui-react";
+import { Button, Form } from "semantic-ui-react";
 import axios from "axios";
 import "../styles/Form.css";
 import { useNavigate } from "react-router-dom";
@@ -11,16 +11,20 @@ function Post() {
   const [image, setImage] = useState("");
   const id = localStorage.getItem("id");
 
-  console.log(text, "text");
 
   const imageInputChangeHandler = (event) => {
     setImage(event.target.files[0]);
   };
   console.log(image, "image");
 
+  const imagePreview = (event) => {
+    setImage(URL.createObjectURL(event.target.files[0]));
+
+  }
+
   const back = () => {
     navigate("/home");
-  }
+  };
 
   const sendPost = () => {
     if (text === "") {
@@ -71,6 +75,7 @@ function Post() {
             accept="image/*"
             placeholder="ajouter une image"
             onChange={imageInputChangeHandler}
+            
           />
           <img src={image}></img>
         </Form.Field>

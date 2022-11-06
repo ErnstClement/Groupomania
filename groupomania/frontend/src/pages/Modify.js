@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form } from "semantic-ui-react";
 import axios from "axios";
 import "../styles/Form.css";
@@ -6,21 +6,34 @@ import { useNavigate, useParams } from "react-router-dom";
 const baseUrl = "http://localhost:3000/api/post/";
 
 function Post() {
+  /* Mise en place des useState */
+  let navigate = useNavigate();
+  const [data, setData] = useState([]);
+  const [text, setText] = useState("");
+  const [image, setImage] = useState("");
+  const [imageView, setImageView] = useState("");
+  /* Récupération de l'ID et du token bearer */
   const userId = localStorage.getItem("id");
   const { id } = useParams();
   const token = localStorage.getItem("token");
-  console.log(token);
 
-  axios.get(baseUrl + "/" + id).then((response) => {
-    var data = response.data;
-    console.log(data);
-  });
+  /* Récupération des données du message */
 
-  let navigate = useNavigate();
-  const [text, setText] = useState("");
-  const [image, setImage] = useState("");
+  useEffect(() => {
+    axios.get(baseUrl + "/" + id).then((response) => {
+      const data = response.data;
+      console.log("data -------", data);
+      setData(data);
+      setText(data.text);
+      setImageView(data.imageUrl);
+    });
+  }, []);
+
+  console.log("text", text);
+  console.log("image", image);
 
   const imageInputChangeHandler = (event) => {
+    setImageView(URL.createObjectURL(event.target.files[0]));
     setImage(event.target.files[0]);
   };
 
@@ -62,7 +75,11 @@ function Post() {
       <Form className="create-form">
         <Form.Field>
           <label>Veuillez entrer votre message :</label>
-          <input placeholder="ici" onChange={(e) => setText(e.target.value)} />
+          <input
+            type="text"
+            defaultValue={data.text}
+            onChange={(e) => setText(e.target.value)}
+          />
         </Form.Field>
         <Form.Field>
           <label>image :</label>
@@ -72,11 +89,12 @@ function Post() {
             placeholder="ajouter une image"
             onChange={imageInputChangeHandler}
           />
-          <img src={image} alt={image}></img>
+          <img src={imageView} alt={imageView}></img>
         </Form.Field>
         <Button onClick={sendPost} type="submit">
           Valider
         </Button>
+        <Button type="submit">Supprimer l'image</Button>
         <Button onClick={back} type="submit">
           Retour
         </Button>

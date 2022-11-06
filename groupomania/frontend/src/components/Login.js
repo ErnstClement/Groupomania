@@ -41,7 +41,7 @@ function Login() {
     <div className="login-container">
       <div className="main">
         <Loading />
-        <h1>Bienvenue sur le service de messagerie de Groupomania</h1>
+        <h1>Bienvenue sur la page de connexion !</h1>
 
         <div className="navbar">
           <Link to="/signup">

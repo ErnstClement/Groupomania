@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import Loading from "../components/Loading";
 import axios from "axios";
 import "../styles/Form.css";
 import "../styles/Post.css";
@@ -43,6 +44,8 @@ function Home() {
 
   return (
     <div className="Home-container">
+                <Loading />
+
       <h1>Bienvenue sur la page de Home !</h1>;
       <div className="main-navigator">
         <Link to="/Post">

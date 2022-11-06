@@ -2,12 +2,15 @@ const Post = require("../models/Post");
 
 // Récupération du module file-system pour faciliter les modifications sur nos sauces
 var fs = require("fs");
+const { json } = require("express");
 
 //----création d'un nouveau post-----------------
 exports.createPost = (req, res, next) => {
+  console.log("req.body.postedBy", req.body.postedBy);
+  console.log("req.body.postedBy", typeof req.body.postedBy);
   let imgUrl = ""; // création constante vide pour récupération de l'image
   // --- upload de l'image vers le dossier "images"
-  if (req.file && req.file.filename) { 
+  if (req.file && req.file.filename) {
     imgUrl = `${req.protocol}://${req.get("host")}/images/${req.file.filename}`;
   }
   // Création du modele du nouveau post*/
@@ -33,6 +36,7 @@ exports.createPost = (req, res, next) => {
 exports.getAllPost = (req, res, next) => {
   // On utilise la méthode find pour obtenir la liste complète des sauces trouvées dans la base, l'array de toutes les sauves de la base de données
   Post.find()
+
     // Si OK on retourne un tableau de toutes les données
     .then((post) => res.status(200).json(post))
     // Si erreur on retourne un message d'erreur
