@@ -3,6 +3,7 @@ import { Button, Form } from "semantic-ui-react";
 import axios from "axios";
 import "../styles/Form.css";
 import { useNavigate } from "react-router-dom";
+import Loading from "../components/Loading";
 const baseUrl = "http://localhost:3000/api/post/";
 
 function Post() {
@@ -11,7 +12,6 @@ function Post() {
   const [image, setImage] = useState("");
   const id = localStorage.getItem("id");
 
-
   const imageInputChangeHandler = (event) => {
     setImage(event.target.files[0]);
   };
@@ -19,8 +19,7 @@ function Post() {
 
   const imagePreview = (event) => {
     setImage(URL.createObjectURL(event.target.files[0]));
-
-  }
+  };
 
   const back = () => {
     navigate("/home");
@@ -63,7 +62,9 @@ function Post() {
       <Form className="create-form">
         <Form.Field>
           <label>Veuillez entrer votre message :</label>
-          <input
+          <textarea
+            multiline
+            rows= "5"
             placeholder="Entrez votre message"
             onChange={(e) => setText(e.target.value)}
           />
@@ -75,7 +76,6 @@ function Post() {
             accept="image/*"
             placeholder="ajouter une image"
             onChange={imageInputChangeHandler}
-            
           />
           <img src={image}></img>
         </Form.Field>

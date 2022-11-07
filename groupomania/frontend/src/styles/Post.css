@@ -14,10 +14,11 @@
     
 }
 
-.post-button{
+.post-button-main{
+    width: 80%;
     display: flex;
+    margin: auto;
     margin-bottom: 10px;
-width: 25%;
 }
 
 .post-content{
@@ -29,7 +30,6 @@ h4{
     padding-left: 10px;
 }
 .post-user{
-    padding-left: 10px;
     border-bottom: solid 1px black;
 }
 
@@ -37,9 +37,7 @@ h4{
     padding-left: 10px;
 }
 
-.post-img, img{
-    width: 50%;
-    display: flex;
-    margin: auto;
-    overflow: hidden;
+.postedBy{
+    padding-left: 10px;
 }
+

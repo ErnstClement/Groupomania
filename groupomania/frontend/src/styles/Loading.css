@@ -9,3 +9,9 @@ margin-bottom: -240px;
 margin: auto;
 }
 
+.post-img, img{
+    width: 50%;
+    display: flex;
+    margin: auto;
+    overflow: hidden;
+}

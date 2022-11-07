@@ -4,14 +4,21 @@ import { Link } from "react-router-dom";
 import Loading from "../components/Loading";
 import axios from "axios";
 import "../styles/Form.css";
+import "../styles/Responsive.css";
 import "../styles/Post.css";
 import { useNavigate } from "react-router-dom";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FaCommentAlt } from "react-icons/fa";
 const baseUrl = "http://localhost:3000/api/post";
 
 function Home() {
   let navigate = useNavigate();
   const [posts, setPosts] = useState([]);
+
+  const back = () => {
+    navigate("/home");
+  };
+
   const deleteOnePost = (id) => {
     axios.delete(baseUrl + "/" + id).then((response) => {
       alert("Message supprimé.");
@@ -44,13 +51,14 @@ function Home() {
 
   return (
     <div className="Home-container">
-                <Loading />
-
-      <h1>Bienvenue sur la page de Home !</h1>;
+      <Loading />
+      <h1>Bienvenue sur la page des posts !</h1>;
       <div className="main-navigator">
         <Link to="/Post">
           <Button className="createPost" type="submit">
-            Creer un post
+            <div className="icon">
+              <FaCommentAlt />
+            </div>
           </Button>
         </Link>
       </div>
@@ -58,10 +66,21 @@ function Home() {
         {posts.reverse().map((post, i) => (
           <div key={i} className="post-block">
             <div className="post-user">
-              <p id="id">Message envoyé par : {post.postedBy}</p>
-              <div className="post-button">
-                <Button onClick={() => modifyOne(post._id)}>Modifier</Button>
-                <Button onClick={() => deleteOnePost(post._id)}>
+              <p className="postedBy" id="id">
+                Message envoyé par : {post.postedBy}
+              </p>
+              <div className="post-button-main">
+                <Button
+                  className="post-button"
+                  onClick={() => modifyOne(post._id)}
+                >
+                  Modifier
+                </Button>
+
+                <Button
+                  className="post-button"
+                  onClick={() => deleteOnePost(post._id)}
+                >
                   Supprimer
                 </Button>
               </div>
