@@ -3,17 +3,20 @@ import { Button, Form } from "semantic-ui-react";
 import axios from "axios";
 import "../styles/Form.css";
 import { useNavigate } from "react-router-dom";
-import Loading from "../components/Loading";
 const baseUrl = "http://localhost:3000/api/post/";
 
 function Post() {
   let navigate = useNavigate();
   const [text, setText] = useState("");
   const [image, setImage] = useState("");
+  const [imageView, setImageView] = useState("");
+
   const id = localStorage.getItem("id");
 
   const imageInputChangeHandler = (event) => {
     setImage(event.target.files[0]);
+    setImageView(URL.createObjectURL(event.target.files[0]));
+
   };
   console.log(image, "image");
 
@@ -77,7 +80,7 @@ function Post() {
             placeholder="ajouter une image"
             onChange={imageInputChangeHandler}
           />
-          <img src={image}></img>
+          <img src={imageView}></img>
         </Form.Field>
         <Button onClick={sendPost} type="submit">
           Valider
