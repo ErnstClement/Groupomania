@@ -62,6 +62,7 @@ function Home() {
           </Button>
         </Link>
       </div>
+      
       <div className="post-container">
         {posts.reverse().map((post, i) => (
           <div key={i} className="post-block">
