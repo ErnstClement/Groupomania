@@ -60,10 +60,61 @@ svg{
     width: 70%;
     margin: auto;
 }
+
 .already-signup > a{
     margin: auto;
 margin-left: 5px;
 margin-right: 5px;}
-    
+    textarea{
+    width: 80%;
+    margin: auto;
+    margin-top: 15px;
+
+
 }
+
+label{
+    width: 55%;
+    margin: auto;
+}
+
+#addFile{
+    height: 30px;
+    line-height: 30px;
+    width: 10%;
+}
+
+.inputFile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputFile + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: black;
+    display: inline-block;
+}
+
+.inputFile:focus + label,
+.inputFile + label:hover {
+    background-color: red;
+}
+
+.inputFile + label {
+	cursor: pointer; 
+}
+
+.inputFile:focus + label {
+	outline: 1px solid blue;
+	outline: -webkit-focus-ring-color auto 5px;
+}
+
+}
+
   
