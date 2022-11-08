@@ -37,9 +37,7 @@ function Signup() {
           <Loading />
           <h1>Bienvenue sur la page d'inscription !</h1>
 
-          <div className="navbar">
-            
-          </div>
+          
         </div>
       </div>
       <Form className="create-form">

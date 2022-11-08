@@ -7,7 +7,6 @@ import "../styles/Post.css";
 import Loading from "./Loading";
 import { useNavigate, Link } from "react-router-dom";
 
-
 const baseUrl = "http://localhost:3000/api/auth/login";
 
 function Login() {
@@ -46,14 +45,6 @@ function Login() {
       <div className="main">
         <Loading />
         <h1>Bienvenue sur la page de connexion !</h1>
-
-        <div className="navbar">
-          <Link to="/signup">
-            <Button className="btnSignup" type="submit">
-              S'inscrire
-            </Button>
-          </Link>
-        </div>
       </div>
       <Form className="create-form">
         <Form.Field>
@@ -72,11 +63,16 @@ function Login() {
             placeholder="Entrez votre mot de passe"
             onChange={(e) => setPassword(e.target.value)}
           />
-        </Form.Field>
-        {/* execution de la fonction "postData" au click du bouton */}
+          {/* execution de la fonction "postData" au click du bouton */}
         <Button onClick={postData} type="submit">
           Valider
         </Button>
+        </Form.Field>
+        
+        <div className="already-signup">
+          <p>Pas inscrit ?</p>
+          <Link to="/signup">inscrivez vous !</Link>
+        </div>
       </Form>
     </div>
   );

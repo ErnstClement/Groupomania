@@ -1,4 +1,3 @@
-import "../styles/Loading.css";
 import logo from "../assets/icon-left-font-monochrome-white-mini.png";
 
 function Loading() {
