@@ -80,12 +80,12 @@ svg{
     margin: auto;
 margin-left: 5px;
 margin-right: 5px;}
-    textarea{
+    
+textarea{
     width: 80%;
+    border-radius: 10px;
     margin: auto;
     margin-top: 15px;
-
-
 }
 
 label{

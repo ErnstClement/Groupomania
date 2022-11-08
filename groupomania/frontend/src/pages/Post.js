@@ -84,17 +84,18 @@ function Post() {
             placeholder="ajouter une image"
             onChange={imageInputChangeHandler}
           />
-          <label id="addFile" for="file">+</label>
-          <img src={imageView}></img>
+          <label id="addFile" for="file">
+            +
+          </label>
+          <img src={imageView} alt={imageView}></img>
 
           <Button onClick={sendPost} type="submit">
-          Valider
-        </Button>
-        <Button onClick={back} type="submit">
-          Retour
-        </Button>
+            Valider
+          </Button>
+          <Button onClick={back} type="submit">
+            Retour
+          </Button>
         </Form.Field>
-        
       </Form>
     </div>
   );

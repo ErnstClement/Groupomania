@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Form } from "semantic-ui-react";
 import axios from "axios";
 import "../styles/Form.css";
+import Loading from "../components/Loading";
 import { useNavigate, useParams } from "react-router-dom";
 const baseUrl = "http://localhost:3000/api/post/";
 
@@ -71,33 +72,41 @@ function Post() {
 
   return (
     <div className="login-container">
-      <h1>Bienvenue sur la page de création de post !</h1>;
+      <Loading />
       <Form className="create-form">
         <Form.Field>
-          <label>Veuillez entrer votre message :</label>
-          <input
+          <label>Ecrivez votre message :</label>
+          <textarea
+            multiline
+            rows="5"
             type="text"
             defaultValue={data.text}
+            placeholder="Entrez votre message"
             onChange={(e) => setText(e.target.value)}
           />
         </Form.Field>
         <Form.Field>
-          <label>image :</label>
+          <label>Ajouter une image :</label>
           <input
             type="file"
+            id="file"
+            className="inputFile"
             accept="image/*"
             placeholder="ajouter une image"
             onChange={imageInputChangeHandler}
           />
+          <label id="addFile" for="file">
+            +
+          </label>
+
           <img src={imageView} alt={imageView}></img>
+          <Button onClick={sendPost} type="submit">
+            Valider
+          </Button>
+          <Button onClick={back} type="submit">
+            Retour
+          </Button>
         </Form.Field>
-        <Button onClick={sendPost} type="submit">
-          Valider
-        </Button>
-        <Button type="submit">Supprimer l'image</Button>
-        <Button onClick={back} type="submit">
-          Retour
-        </Button>
       </Form>
     </div>
   );
