@@ -13,20 +13,7 @@ h1{
     width: 100%;
 
 }
-input{
-    margin: auto;
-    width: 20%;
-    
-}
 
-button{
-    margin: auto;
-    margin-top: 15px;
-    width: 10%;
-}
-a{
-    margin: auto;
-}
 .createPost{
     width: 100%;
 }

@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import { Button, Checkbox, Form } from "semantic-ui-react";
 import axios from "axios";
 import "../styles/Form.css";
+import "../styles/Responsive.css";
+import "../styles/Post.css";
 import Loading from "./Loading";
 import { useNavigate, Link } from "react-router-dom";
+
+
 const baseUrl = "http://localhost:3000/api/auth/login";
 
 function Login() {

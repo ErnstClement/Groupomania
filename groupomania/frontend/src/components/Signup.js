@@ -38,11 +38,7 @@ function Signup() {
           <h1>Bienvenue sur la page d'inscription !</h1>
 
           <div className="navbar">
-            <Link to="/login">
-              <Button className="btnLogin" type="submit">
-                Se connecter
-              </Button>
-            </Link>
+            
           </div>
         </div>
       </div>
@@ -61,11 +57,20 @@ function Signup() {
             placeholder="Entrez votre mot de passe"
             onChange={(e) => setPassword(e.target.value)}
           />
-        </Form.Field>
-        <Button onClick={postData} type="submit">
+          <Button onClick={postData} type="submit">
           Valider
         </Button>
+        </Form.Field>
+        
       </Form>
+      <div className="already-signup">
+        <p>Déjà inscrit ?</p>
+        <Link to="/login">
+              
+                Connectez vous !
+              
+        </Link>
+      </div>
     </div>
   );
 }

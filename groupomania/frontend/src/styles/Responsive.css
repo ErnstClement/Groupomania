@@ -33,4 +33,31 @@ svg{
     height: 30px;
     font-size: 15px;
 }
+
+.field > input{
+    margin: auto;
+    width: 75%;
+
 }
+
+.field{
+    margin-bottom: 15px;
+}
+.field > button{
+    width: 50%;
+    margin: auto;
+    margin-top: 10px;
+
+}
+
+.already-signup{
+    display: flex;
+    width: 70%;
+    margin: auto;
+}
+.already-signup > a{
+    margin: auto;
+}
+    
+}
+  
