@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { Button, Checkbox, Form } from "semantic-ui-react";
+import { Button, Form } from "semantic-ui-react";
 import axios from "axios";
 import "../styles/Form.css";
-import Loading from "./Loading";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const baseUrl = "http://localhost:3000/api/auth/signup";
 
@@ -34,10 +33,7 @@ function Signup() {
     <div className="signup-container">
       <div className="login-container">
         <div className="main">
-          <Loading />
-          <h1>Bienvenue sur la page d'inscription !</h1>
-
-          
+          <h1>Bienvenue sur la page d'inscription !</h1>          
         </div>
       </div>
       <Form className="create-form">
@@ -63,10 +59,8 @@ function Signup() {
       </Form>
       <div className="already-signup">
         <p>Déjà inscrit ?</p>
-        <Link to="/login">
-              
+        <Link to="/login">              
                 Connectez vous !
-              
         </Link>
       </div>
     </div>

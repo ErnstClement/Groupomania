@@ -1,5 +1,5 @@
 /* Small Devices */
-@media (min-width: 300px) and (max-width: 1400px) {
+@media (width>=300px){
 .Loading{
     display: flex;
     width: 100% !important;
@@ -14,7 +14,14 @@
 }
 
 .create-form{
+    width: 250px;
+    margin: auto;
     margin-top: 15px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 10px;
+    background-color: white;
+
 }
 
 .field > img{
@@ -23,6 +30,22 @@
     margin: auto;
     margin-top: 10px;
     overflow: hidden;
+}
+
+.field > input{
+    margin: auto;
+    width: 200px;
+
+}
+
+.field{
+    margin-bottom: 15px;
+}
+.field > button{
+    width: 100px;
+    margin: auto;
+    margin-top: 10px;
+
 }
 
 .post-img > img{
@@ -36,16 +59,17 @@
 h1{
     width: 60%;
     margin: auto;
+    margin-bottom: 45px;
     font-size: calc(22px + 0.390625vw);
 }
 
-svg{
-    vertical-align: sub;
-}
 
-.createPost{
-    width: 150% ;
-}
+
+.main-navigator {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 90%;
+  }
 
 .post-button{
     width: 40%!important;
@@ -53,26 +77,11 @@ svg{
     font-size: 15px;
 }
 
-.field > input{
-    margin: auto;
-    width: 75%;
 
-}
-
-.field{
-    margin-bottom: 15px;
-}
-.field > button{
-    width: 50%;
-    margin: auto;
-    margin-top: 10px;
-
-}
 
 .already-signup{
     display: flex;
     justify-content: center;
-    width: 70%;
     margin: auto;
 }
 
@@ -95,7 +104,6 @@ label{
 
 #addFile{
     height: 30px;
-    line-height: 30px;
     width: 10%;
 }
 
@@ -143,4 +151,36 @@ label{
 
 }
 
+@media (width>=576px) {
+
+    .field > input {
+        margin: auto;
+        width: 300px;
+      }
+
+      .create-form{
+        width: 350px;
+    
+    }
+    
+
+}
   
+@media (width>=768px) {
+
+    .field > input {
+        margin: auto;
+        width: 300px;
+      }
+
+    .post-button{
+        width: 15% !important;
+        margin-right: 15px;
+
+    }
+    .post-button-main{
+        justify-content: flex-start;
+    }
+
+}
+

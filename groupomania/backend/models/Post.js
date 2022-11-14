@@ -7,9 +7,12 @@ const postSchema = mongoose.Schema({
     type: String,
   },
   imageUrl: { type: String },
-  postedBy: { type: String },
-  likes: 0,
-  usersLiked: [],
+  userId: { type: String },
+  /* Like / Dislikes */
+  likes: { type: Number, defaut: 0 },
+  dislikes : { type: Number, defaut: 0 },
+  usersLiked : {type: [String]},
+  usersDisliked :{type: [String]}
 });
 
 // On exporte le schema

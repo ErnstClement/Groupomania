@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Button, Form } from "semantic-ui-react";
 import axios from "axios";
 import "../styles/Form.css";
-import Loading from "../components/Loading";
 import { useNavigate, useParams } from "react-router-dom";
 const baseUrl = "http://localhost:3000/api/post/";
 
@@ -72,7 +71,6 @@ function Post() {
 
   return (
     <div className="login-container">
-      <Loading />
       <Form className="create-form">
         <Form.Field>
           <label>Ecrivez votre message :</label>
@@ -86,7 +84,7 @@ function Post() {
           />
         </Form.Field>
         <Form.Field>
-          <label>Ajouter une image :</label>
+          <label>Ajouter une image</label>
           <input
             type="file"
             id="file"

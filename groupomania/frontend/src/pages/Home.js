@@ -1,23 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "semantic-ui-react";
+import { Button, Message } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import Loading from "../components/Loading";
 import axios from "axios";
 import "../styles/Form.css";
 import "../styles/Responsive.css";
 import "../styles/Post.css";
 import { useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FaCommentAlt } from "react-icons/fa";
 const baseUrl = "http://localhost:3000/api/post";
 
 function Home() {
   let navigate = useNavigate();
   const [posts, setPosts] = useState([]);
-
-  const back = () => {
-    navigate("/home");
-  };
+  const [like, setLike] = useState("");
+  const [userId, setUserId] = useState("");
 
   const deleteOnePost = (id) => {
     axios.delete(baseUrl + "/" + id).then((response) => {
@@ -30,14 +25,22 @@ function Home() {
     axios.get(baseUrl + "/" + id).then((response) => {
       navigate("/postModify/" + id);
     });
-
-    /*alert("Message modifié !")*/
   };
+
+  const likeOne = (id) => {
+    var postData = posts;
+
+    axios.post(baseUrl + "/" + id + "/like").then((response) => {
+      alert("Merci pour ta réaction !");
+    });
+  };
+
   useEffect(() => {
     axios
       .get(baseUrl)
       .then((response) => {
         var data = response.data;
+
         setPosts(data);
         console.log("data", data);
       })
@@ -51,24 +54,23 @@ function Home() {
 
   return (
     <div className="Home-container">
-      <Loading />
-      <h1>Bienvenue sur la page des posts !</h1>;
+      <h1>Bienvenue sur la page des posts !</h1>
       <div className="main-navigator">
-        <Link to="/Post">
-          <Button className="createPost" type="submit">
-            <div className="icon">
-              <FaCommentAlt />
-            </div>
-          </Button>
-        </Link>
+        <div className="main-createPost">
+          <Link to="/Post">
+            <Button className="createPost" type="submit">
+              Creer un message
+            </Button>
+          </Link>
+        </div>
       </div>
-      
+
       <div className="post-container">
         {posts.reverse().map((post, i) => (
           <div key={i} className="post-block">
             <div className="post-user">
               <p className="postedBy" id="id">
-                Message envoyé par : {post.postedBy}
+                Message envoyé par : {post.userId}
               </p>
               <div className="post-button-main">
                 <Button
@@ -84,6 +86,14 @@ function Home() {
                 >
                   Supprimer
                 </Button>
+
+                <Button
+                  className="post-button"
+                  onClick={() => likeOne(post._id, post.userId, post.likes)}
+                >
+                  Like !
+                </Button>
+                <p id="like">{post.likes}</p>
               </div>
             </div>
             <div className="post-content">

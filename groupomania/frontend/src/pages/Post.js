@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button, Form } from "semantic-ui-react";
 import axios from "axios";
 import "../styles/Form.css";
-import Loading from "../components/Loading";
 
 import { useNavigate } from "react-router-dom";
 const baseUrl = "http://localhost:3000/api/post/";
@@ -21,10 +20,6 @@ function Post() {
   };
   console.log(image, "image");
 
-  const imagePreview = (event) => {
-    setImage(URL.createObjectURL(event.target.files[0]));
-  };
-
   const back = () => {
     navigate("/home");
   };
@@ -42,7 +37,7 @@ function Post() {
       let formData = new FormData();
       formData.append("text", text);
       formData.append("image", image);
-      formData.append("postedBy", id);
+      formData.append("userId", id);
       console.log(formData);
 
       axios
@@ -62,7 +57,6 @@ function Post() {
 
   return (
     <div className="login-container">
-      <Loading />
       <h1>Bienvenue sur la page de création de post !</h1>;
       <Form className="create-form">
         <Form.Field>
@@ -75,7 +69,7 @@ function Post() {
           />
         </Form.Field>
         <Form.Field>
-          <label>Ajouter une image :</label>
+          <label>Ajouter une image </label>
           <input
             type="file"
             id="file"

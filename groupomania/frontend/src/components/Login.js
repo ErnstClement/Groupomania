@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { Button, Checkbox, Form } from "semantic-ui-react";
+import { Button, Form } from "semantic-ui-react";
 import axios from "axios";
 import "../styles/Form.css";
 import "../styles/Responsive.css";
 import "../styles/Post.css";
-import Loading from "./Loading";
 import { useNavigate, Link } from "react-router-dom";
 
 const baseUrl = "http://localhost:3000/api/auth/login";
@@ -43,7 +42,6 @@ function Login() {
   return (
     <div className="login-container">
       <div className="main">
-        <Loading />
         <h1>Bienvenue sur la page de connexion !</h1>
       </div>
       <Form className="create-form">
@@ -64,16 +62,15 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
           {/* execution de la fonction "postData" au click du bouton */}
-        <Button onClick={postData} type="submit">
-          Valider
-        </Button>
+          <Button onClick={postData} type="submit">
+            Valider
+          </Button>
         </Form.Field>
-        
-        <div className="already-signup">
-          <p>Pas inscrit ?</p>
-          <Link to="/signup">inscrivez vous !</Link>
-        </div>
       </Form>
+      <div className="already-signup">
+        <p>Pas inscrit ?</p>
+        <Link to="/signup">inscrivez vous !</Link>
+      </div>
     </div>
   );
 }

@@ -6,8 +6,7 @@ const { json } = require("express");
 
 //----création d'un nouveau post-----------------
 exports.createPost = (req, res, next) => {
-  console.log("req.body.postedBy", req.body.postedBy);
-  console.log("req.body.postedBy", typeof req.body.postedBy);
+  console.log(req.body);
   let imgUrl = ""; // création constante vide pour récupération de l'image
   // --- upload de l'image vers le dossier "images"
   if (req.file && req.file.filename) {
@@ -17,7 +16,7 @@ exports.createPost = (req, res, next) => {
   const post = new Post({
     text: req.body.text,
     imageUrl: imgUrl,
-    postedBy: req.body.postedBy,
+    userId: req.body.userId,
     likes: 0,
     usersLiked: [],
   });
@@ -159,11 +158,12 @@ exports.getOnePost = (req, res, next) => {
 //---Ajout des likes-----
 
 exports.like = (req, res, next) => {
+  console.log(req.body);
   // Like présent dans le body
   let like = req.body.like;
   // On prend le userID
   let userId = req.body.userId;
-  // On prend l'id de la sauce
+  // On prend l'id du post
   let postId = req.params.id;
 
   if (like === 1) {
@@ -185,7 +185,7 @@ exports.like = (req, res, next) => {
       // si tout se passe bien, renvoi d'un message avec un code 200
       .then(() =>
         res.status(200).json({
-          message: "j'aime ajouté !",
+          message: "like ajouté !",
         })
       )
       // sinon renvoi d'un code 400 avec un objet JSON error
@@ -207,7 +207,7 @@ exports.like = (req, res, next) => {
         },
         $inc: {
           likes: -1,
-        }, // On incrémente de 1
+        }, // On incrémente de -1
       }
     )
       .then(() => {
