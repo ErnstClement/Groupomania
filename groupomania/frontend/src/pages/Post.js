@@ -18,7 +18,6 @@ function Post() {
     setImage(event.target.files[0]);
     setImageView(URL.createObjectURL(event.target.files[0]));
   };
-  console.log(image, "image");
 
   const back = () => {
     navigate("/home");

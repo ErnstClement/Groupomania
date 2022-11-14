@@ -158,7 +158,7 @@ exports.getOnePost = (req, res, next) => {
 //---Ajout des likes-----
 
 exports.like = (req, res, next) => {
-  console.log(req.body);
+  console.log("req.body like", req.body);
   // Like présent dans le body
   let like = req.body.like;
   // On prend le userID
@@ -167,6 +167,7 @@ exports.like = (req, res, next) => {
   let postId = req.params.id;
 
   if (like === 1) {
+    console.log("like", like);
     // Si il s'agit d'un like
     Post.updateOne(
       {
@@ -177,6 +178,7 @@ exports.like = (req, res, next) => {
         $push: {
           usersLiked: userId,
         },
+        $pull: { usersDisliked: userId },
         $inc: {
           likes: +1,
         }, // On incrémente de 1
@@ -205,6 +207,7 @@ exports.like = (req, res, next) => {
         $push: {
           usersDisliked: userId,
         },
+        $pull: { usersLiked: userId },
         $inc: {
           likes: -1,
         }, // On incrémente de -1

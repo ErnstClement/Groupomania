@@ -29,13 +29,36 @@ function Home() {
 
   const likeOne = (id) => {
     var postData = posts;
+    console.log(postData);
+    const currentPost = postData.find((post) => post._id === id);
+    console.log("currentPost", currentPost);
 
-    axios.post(baseUrl + "/" + id + "/like").then((response) => {
-      alert("Merci pour ta réaction !");
-    });
+    if (currentPost.usersLiked.includes(userId)) {
+      axios
+        .post(baseUrl + "/" + id + "/like", {
+          like: -1,
+          userId: userId,
+          postId: id,
+        })
+        .then((response) => {
+          setLike(-1);
+        });
+    } else {
+      axios
+        .post(baseUrl + "/" + id + "/like", {
+          like: 1,
+          userId: userId,
+          postId: id,
+        })
+        .then((response) => {
+          setLike(1);
+        });
+    }
   };
 
   useEffect(() => {
+    const currentUserId = localStorage.getItem("id");
+    setUserId(JSON.parse(currentUserId));
     axios
       .get(baseUrl)
       .then((response) => {
@@ -50,7 +73,7 @@ function Home() {
         console.log(response.status);
         console.log(response.headers);
       });
-  }, []);
+  }, [like]);
 
   return (
     <div className="Home-container">
