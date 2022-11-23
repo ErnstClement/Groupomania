@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Message } from "semantic-ui-react";
+import { Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "../styles/Form.css";
@@ -11,8 +11,16 @@ const baseUrl = "http://localhost:3000/api/post";
 function Home() {
   let navigate = useNavigate();
   const [posts, setPosts] = useState([]);
-  const [like, setLike] = useState("");
   const [userId, setUserId] = useState("");
+  const [like, setLike] = useState("");
+
+  const [checkLike, setCheckLike] = useState(false);
+  const [dislikeActive, setDislikeActive] = useState("");
+
+  const logOut = () => {
+    localStorage.setItem("token", "");
+    navigate("/login");
+  };
 
   const deleteOnePost = (id) => {
     axios.delete(baseUrl + "/" + id).then((response) => {
@@ -31,7 +39,7 @@ function Home() {
     var postData = posts;
     console.log(postData);
     const currentPost = postData.find((post) => post._id === id);
-    console.log("currentPost", currentPost);
+    console.log(currentPost);
 
     if (currentPost.usersLiked.includes(userId)) {
       axios
@@ -42,6 +50,8 @@ function Home() {
         })
         .then((response) => {
           setLike(-1);
+          setCheckLike(false);
+          localStorage.setItem(currentPost._id, 0);
         });
     } else {
       axios
@@ -52,6 +62,8 @@ function Home() {
         })
         .then((response) => {
           setLike(1);
+          setCheckLike(true);
+          localStorage.setItem(currentPost._id, 1);
         });
     }
   };
@@ -63,9 +75,8 @@ function Home() {
       .get(baseUrl)
       .then((response) => {
         var data = response.data;
-
+        console.log(data);
         setPosts(data);
-        console.log("data", data);
       })
 
       .catch(({ response }) => {
@@ -83,6 +94,15 @@ function Home() {
           <Link to="/Post">
             <Button className="createPost" type="submit">
               Creer un message
+            </Button>
+          </Link>
+          <Link to="/login">
+            <Button
+              className="createPost"
+              type="submit"
+              onClick={() => logOut()}
+            >
+              Deconnection
             </Button>
           </Link>
         </div>
@@ -114,13 +134,15 @@ function Home() {
                   className="post-button"
                   onClick={() => likeOne(post._id, post.userId, post.likes)}
                 >
-                  Like !
+                  Like
                 </Button>
-                <p id="like">{post.likes}</p>
               </div>
             </div>
             <div className="post-content">
-              <h4>Message :</h4>
+              <div className="post-header">
+                <h4>Message :</h4>
+                <h4 id="like">Like : {post.likes}</h4>
+              </div>
               <div className="post-text">
                 <p>{post.text}</p>
               </div>

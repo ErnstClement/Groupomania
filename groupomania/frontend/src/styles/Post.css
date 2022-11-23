@@ -14,7 +14,6 @@
 }
 
 .post-button-main{
-    width: 80%;
     display: flex;
     margin: auto;
     margin-bottom: 10px;
@@ -36,7 +35,12 @@ h4{
     padding-left: 10px;
 }
 
-.postedBy{
-    padding-left: 10px;
+
+
+.active-like{
+    background-color: blue;
 }
 
+.active-dislike{
+    background-color: red;
+}
